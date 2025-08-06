@@ -1,5 +1,9 @@
 package com.oficina.nikima.model;
 
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,5 +29,6 @@ public class Servico {
 
     @ManyToOne
     @JoinColumn(name = "moto_id")
+    @JsonIgnore
     private Moto moto;
 }
