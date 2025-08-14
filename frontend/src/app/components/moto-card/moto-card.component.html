@@ -1,0 +1,24 @@
+<article class="card">
+  <header>
+    <strong>{{ moto.modelo }}</strong>
+    <span class="placa">{{ moto.placa }}</span>
+  </header>
+
+  <ul class="meta">
+    <li><b>Mecânico:</b> {{ moto.mecanicoResponsavel }}</li>
+    <li><b>Atendente:</b> {{ moto.funcionarioNota }}</li>
+    <li><b>Entrada:</b> {{ moto.dataEntrada || '-' }}</li>
+  </ul>
+
+  <section class="servicos" *ngIf="moto.servicos?.length">
+    <div *ngFor="let s of moto.servicos" class="servico">
+      <span>{{ s.descricao }} ({{ s.tipo }})</span>
+      <span>R$ {{ s.preco | number:'1.2-2' }}</span>
+    </div>
+    <div class="total"><b>Total:</b> R$ {{ total() | number:'1.2-2' }}</div>
+  </section>
+
+  <footer>
+    <a [routerLink]="['/motos', moto.id, 'editar']">Editar</a>
+  </footer>
+</article>

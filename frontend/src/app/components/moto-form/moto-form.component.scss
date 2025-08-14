@@ -1,0 +1,11 @@
+.form-wrap { max-width: 900px; }
+.grid {
+  display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+}
+.servicos { margin-top: 12px; }
+.servico-item {
+  display:grid; grid-template-columns: 2fr 1fr 1fr 1fr auto; gap:8px; margin-bottom:8px;
+}
+.actions { margin-top: 12px; display:flex; gap: 8px; }
+.error { margin-top: 8px; color: #b00020; }
+input, select, button { padding:8px; }

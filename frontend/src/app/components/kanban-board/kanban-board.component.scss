@@ -1,0 +1,12 @@
+.kanban { min-height: 80vh; }
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.column {
+  background: #f7f7f7; border: 1px solid #eee; border-radius: 12px;
+  padding: 12px;
+}
+.list > div { margin-bottom: 10px; }
+.loading, .error { padding: 12px; }
