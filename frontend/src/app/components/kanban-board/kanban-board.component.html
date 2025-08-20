@@ -1,0 +1,59 @@
+<section class="kanban">
+  <div *ngIf="carregando(); else content" class="loading">Carregando...</div>
+  <ng-template #content>
+    <div *ngIf="erro()" class="error">{{ erro() }}</div>
+
+    <div class="board">
+      <!-- AGUARDO -->
+      <div class="column">
+        <h3>Em aguardo</h3>
+        <div
+          cdkDropList
+          id="aguardoList"
+          [cdkDropListData]="aguardo()"
+          [cdkDropListConnectedTo]="connected"
+          (cdkDropListDropped)="drop($event, 'AGUARDO')"
+          class="list"
+        >
+          <div *ngFor="let moto of aguardo()" cdkDrag>
+            <app-moto-card [moto]="moto"></app-moto-card>
+          </div>
+        </div>
+      </div>
+
+      <!-- ANDAMENTO -->
+      <div class="column">
+        <h3>Em andamento</h3>
+        <div
+          cdkDropList
+          id="andamentoList"
+          [cdkDropListData]="andamento()"
+          [cdkDropListConnectedTo]="connected"
+          (cdkDropListDropped)="drop($event, 'ANDAMENTO')"
+          class="list"
+        >
+          <div *ngFor="let moto of andamento()" cdkDrag>
+            <app-moto-card [moto]="moto"></app-moto-card>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONCLUIDO -->
+      <div class="column">
+        <h3>Concluído</h3>
+        <div
+          cdkDropList
+          id="concluidoList"
+          [cdkDropListData]="concluido()"
+          [cdkDropListConnectedTo]="connected"
+          (cdkDropListDropped)="drop($event, 'CONCLUIDO')"
+          class="list"
+        >
+          <div *ngFor="let moto of concluido()" cdkDrag>
+            <app-moto-card [moto]="moto"></app-moto-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</section>

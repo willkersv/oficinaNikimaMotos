@@ -1,0 +1,54 @@
+<section class="form-wrap">
+  <h2>{{ editId ? 'Editar Moto' : 'Nova Moto' }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="salvar()">
+    <div class="grid">
+      <label>Modelo
+        <input formControlName="modelo" />
+      </label>
+
+      <label>Placa
+        <input formControlName="placa" />
+      </label>
+
+      <label>Data Entrada
+        <input type="datetime-local" formControlName="dataEntrada" />
+      </label>
+
+      <label>Status
+        <select formControlName="status">
+          <option *ngFor="let s of statusList" [value]="s">{{ s }}</option>
+        </select>
+      </label>
+
+      <label>Mecânico Responsável
+        <input formControlName="mecanicoResponsavel" />
+      </label>
+
+      <label>Funcionário Nota
+        <input formControlName="funcionarioNota" />
+      </label>
+    </div>
+
+    <h3>Serviços</h3>
+    <div formArrayName="servicos" class="servicos">
+      <div *ngFor="let s of servicos.controls; let i = index" [formGroupName]="i" class="servico-item">
+        <input placeholder="Descrição" formControlName="descricao" />
+        <input type="number" step="0.01" placeholder="Preço" formControlName="preco" />
+        <select formControlName="tipo">
+          <option *ngFor="let t of tipos" [value]="t">{{ t }}</option>
+        </select>
+        <input placeholder="Realizado por" formControlName="realizadoPor" />
+        <button type="button" (click)="removerServico(i)" *ngIf="servicos.length > 1">Remover</button>
+      </div>
+      <button type="button" (click)="addServico()">+ Adicionar serviço</button>
+    </div>
+
+    <div class="actions">
+      <button type="submit" [disabled]="salvando()">Salvar</button>
+      <a routerLink="/">Cancelar</a>
+    </div>
+
+    <div class="error" *ngIf="erro()">{{ erro() }}</div>
+  </form>
+</section>
